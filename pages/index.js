@@ -42,7 +42,6 @@ export default function Home() {
     }
   }
   useEffect(()=>{
-    console.log(inner);
     contentGetter.current.value='';
   },[inner]);
   
@@ -59,15 +58,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>my app</h1>
-      <p>input number</p>
+      <p>Input number following box</p>
       <form onSubmit={clickFnc}>
       <input ref={contentGetter} type="numnber" />
       <input onClick={clickFnc} type="submit" value='入力'/>
       </form>
       <button onClick={clear}>Clear</button>
+      <button onClick={()=>setInner((indata)=>[...indata,<br />])}>Paragraph</button>
       <hr />
+      <h3>-DATA-</h3>
       {switcher==='none' && <p>no-data</p>}
-      {(switcher==='get' ||switcher==='errer') && inner.map((indata)=><span>{indata} </span>)}
+      {(switcher==='get' ||switcher==='errer') && inner.map((indata,index)=><span key={index}>{indata} </span>)}
       {/* {switcher==='errer' && inner.map((indata)=>(indata))} */}
       {switcher==='errer' && <p>This is NaN!! Input the number only!</p>}
 
